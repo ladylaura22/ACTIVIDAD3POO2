@@ -9,7 +9,7 @@ public class Socio {
     private String telefono;
     private String direccion;
     private List<Cuenta> cuentas;
-
+    //Constructor
     public Socio(String nombre, String cedula) {
         this.nombre = nombre;
         this.cedula = cedula;
@@ -27,6 +27,7 @@ public class Socio {
     }
 
     //Cerrar cuenta
+    //Metodo para eliminar una cuenta de la lista de cuentas del socio
     public void cerrarCuenta(Cuenta cuenta) {
         cuentas.remove(cuenta);
     }

@@ -16,10 +16,10 @@ public class APP {
             System.out.println("1. Ingresar nuevo socio");
             System.out.println("2. Realizar depósito");
             System.out.println("3. Realizar retiro");
-            System.out.println("4. Listar nombres de todos los socios (programación funcional)");
-            System.out.println("5. Mostrar cuentas con saldo > $500,000 (programación funcional)");
-            System.out.println("6. Calcular total de dinero en la cooperativa (programación funcional)");
-            System.out.println("7. Listar todos los socios con sus datos (programación funcional)");
+            System.out.println("4. Listar nombres de todos los socios");
+            System.out.println("5. Mostrar cuentas con saldo > $500,000 ");
+            System.out.println("6. Calcular total de dinero en la cooperativa");
+            System.out.println("7. Listar todos los socios con sus datos");
             System.out.println("8. Salir");
             System.out.print("Seleccione una opción: ");
 
@@ -54,6 +54,16 @@ public class APP {
 
                     System.out.print("Ingrese número de cuenta: ");
                     String numCuenta = sc.nextLine();
+
+                    // Validar número de cuenta único en toda la cooperativa
+                    boolean numeroExistente = socios.stream()
+                            .flatMap(s -> s.getCuentas().stream())
+                            .anyMatch(c -> c.getNumeroCuenta().equals(numCuenta));
+
+                    if (numeroExistente) {
+                        System.out.println("Ya existe una cuenta con ese número en la cooperativa. Intente con otro número.");
+                        break;
+                    }
 
                     Cuenta cuenta;
                     if (tipoCuenta == 1) {

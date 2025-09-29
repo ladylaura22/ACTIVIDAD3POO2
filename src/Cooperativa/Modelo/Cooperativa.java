@@ -2,8 +2,10 @@ package Cooperativa.Modelo;
 
 import java.util.HashMap;
 import java.util.Map;
-
+// Clase Cooperativa
+// Maneja los socios y sus cuentas
 public class Cooperativa {
+    // Mapa para almacenar socios por su cédula
     private Map<String, Socio> socios = new HashMap<>();
 
     public boolean agregarSocio(Socio socio) {

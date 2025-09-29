@@ -15,6 +15,7 @@ public class Cuenta {
     }
 
     // Métodos
+    // depositar dinero en la cuenta
     public void depositarDinero(double monto) {
         if (monto > 0) {
             this.saldo += monto;
@@ -23,6 +24,7 @@ public class Cuenta {
         }
 
     }
+    // retirar dinero de la cuenta
 
     public void retirarDinero(double monto) {
         if (monto > 0 && monto <= this.saldo) {
