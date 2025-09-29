@@ -5,7 +5,6 @@ import Cooperativa.Modelo.*;
 import Cooperativa.Transaccion.*;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class APP {
     public static void main(String[] args) {
@@ -17,10 +16,11 @@ public class APP {
             System.out.println("1. Ingresar nuevo socio");
             System.out.println("2. Realizar depósito");
             System.out.println("3. Realizar retiro");
-            System.out.println("4. Listar nombres de todos los socios");
-            System.out.println("5. Mostrar cuentas con saldo > $500,000");
-            System.out.println("6. Calcular total de dinero en la cooperativa");
-            System.out.println("7. Salir");
+            System.out.println("4. Listar nombres de todos los socios (programación funcional)");
+            System.out.println("5. Mostrar cuentas con saldo > $500,000 (programación funcional)");
+            System.out.println("6. Calcular total de dinero en la cooperativa (programación funcional)");
+            System.out.println("7. Listar todos los socios con sus datos (programación funcional)");
+            System.out.println("8. Salir");
             System.out.print("Seleccione una opción: ");
 
             int opcion;
@@ -131,14 +131,14 @@ public class APP {
                     }
                     break;
 
-                case 4: // Listar nombres de todos los socios (map + forEach)
+                case 4: // Listar nombres de todos los socios (map + forEach, programación funcional)
                     System.out.println("Nombres de todos los socios:");
                     socios.stream()
                             .map(Socio::getNombre)
                             .forEach(System.out::println);
                     break;
 
-                case 5: // Mostrar cuentas con saldo > $500,000
+                case 5: // Mostrar cuentas con saldo > $500,000 (filter, programación funcional)
                     System.out.println("Cuentas con saldo mayor a $500,000:");
                     socios.stream()
                             .flatMap(s -> s.getCuentas().stream())
@@ -150,7 +150,7 @@ public class APP {
                             ));
                     break;
 
-                case 6: // Calcular total de dinero en la cooperativa (reduce)
+                case 6: // Calcular total de dinero en la cooperativa (reduce, programación funcional)
                     double total = socios.stream()
                             .flatMap(s -> s.getCuentas().stream())
                             .map(Cuenta::getSaldo)
@@ -158,7 +158,24 @@ public class APP {
                     System.out.println("Total en la cooperativa: $" + total);
                     break;
 
-                case 7:
+                case 7: // Listar todos los socios con sus datos (programación funcional)
+                    System.out.println("Listado de socios:");
+                    socios.stream()
+                            .forEach(s -> {
+                                System.out.println("Nombre: " + s.getNombre());
+                                System.out.println("Cédula: " + s.getCedula());
+                                System.out.println("Cuentas:");
+                                s.getCuentas().stream()
+                                        .forEach(c -> System.out.println(
+                                                "  - Nro: " + c.getNumeroCuenta() +
+                                                        " | Tipo: " + c.getTipo() +
+                                                        " | Saldo: " + c.getSaldo()
+                                        ));
+                                System.out.println();
+                            });
+                    break;
+
+                case 8:
                     System.out.println("¡Hasta pronto!");
                     sc.close();
                     return;
