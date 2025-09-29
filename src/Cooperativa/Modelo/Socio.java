@@ -45,4 +45,16 @@ public class Socio {
         return telefono;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+
+    public Cuenta getCuentaPorNumero(String numeroCuenta) {
+        return cuentas.stream()
+                .filter(c -> c.getNumeroCuenta().equals(numeroCuenta))
+                .findFirst()
+                .orElse(null);
+    }
+
 }
