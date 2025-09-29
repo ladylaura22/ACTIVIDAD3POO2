@@ -24,11 +24,13 @@ public class Cuenta {
 
     }
 
-    public void retirarDinero (double monto){
+    public void retirarDinero(double monto) {
         if (monto > 0 && monto <= this.saldo) {
             this.saldo -= monto;
+        } else if (monto > this.saldo) {
+            throw new IllegalArgumentException("Saldo insuficiente.");
         } else {
-            System.out.println("El monto debe ser mayor a 0 y menor o igual al saldo disponible.");
+            throw new IllegalArgumentException("El monto debe ser mayor a 0.");
         }
     }
     // get para ver saldo

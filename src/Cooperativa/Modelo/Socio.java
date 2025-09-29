@@ -18,6 +18,11 @@ public class Socio {
 
     //Metodo para agregar una cuenta a la lista de cuentas del socio
     public void abrirCuenta(Cuenta cuenta) {
+        boolean existe = cuentas.stream()
+                .anyMatch(c -> c.getNumeroCuenta().equals(cuenta.getNumeroCuenta()));
+        if (existe) {
+            throw new IllegalArgumentException("Ese número de cuenta ya existe para este socio.");
+        }
         cuentas.add(cuenta);
     }
 
